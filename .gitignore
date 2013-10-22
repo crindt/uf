@@ -1,0 +1,65 @@
+*.py[cod]
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+develop-eggs
+.installed.cfg
+lib64
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+calthorpe/server/calthorpe/reports/
+tmp
+# things to exclude from the public release
+*.pem
+calthorpe/server/calthorpe/local_settings.py*
+!calthorpe/server/calthorpe/local_settings.py.sample
+
+calthorpe/server/calthorpe/footprint/engines/*
+!calthorpe/server/calthorpe/footprint/engines/models/*
+!calthorpe/server/calthorpe/footprint/engines/__init__.py
+!calthorpe/server/calthorpe/footprint/engines/uf_toolbox.py
+
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# pycharm related
+.idea
+
+# OSX File stuff
+.DS_Store
+
+#never check-in local_settings - it should be a symlink
+local_settings.py
+
+#node.js modules
+node_modules
+
+#celery process id files generated while running
+celerybeat-schedule
+celerybeat.pid
+celeryev.pid
+*.lnk
+
+tmp/
+*/tmp/
+
+# environment-specific New Relic config file
+newrelic.ini
+
+*.idea
