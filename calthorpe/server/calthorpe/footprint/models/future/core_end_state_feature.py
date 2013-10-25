@@ -1,21 +1,30 @@
-# coding=utf-8
-# UrbanFootprint-California (v1.0) = models.DecimalField(max_digits=14, decimal_places=4, default=0)) Land Use Scenario Development and Modeling System.
-#
-# Copyright (C) 2012 Calthorpe Associates
-#
+# UrbanFootprint-California, Scenario Planning Model
+# 
+# Copyright (C) 2012-2013 Calthorpe Associates
+# 
 # This program is free software: you can redistribute it and/or modify it under the terms of the
-# GNU General Public License as published by the Free Software Foundation = models.DecimalField(max_digits=14, decimal_places=4, default=0)) version 3 of the License.
-#
-# This program is distributed in the hope that it will be useful = models.DecimalField(max_digits=14, decimal_places=4, default=0)) but WITHOUT ANY WARRANTY;
+# GNU General Public License as published by the Free Software Foundation, version 3 of the License.
+# 
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
 # without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 # See the GNU General Public License for more details.
-#
+# 
 # You should have received a copy of the GNU General Public License along with this program.
-# If not = models.DecimalField(max_digits=14, decimal_places=4, default=0)) see <http://www.gnu.org/licenses/>.
+# If not, see <http://www.gnu.org/licenses/>.
+# 
+# Contact: Calthorpe Associates (urbanfootprint@calthorpe.com)
+# Firm contact: 2095 Rose Street Suite 201, Berkeley CA 94709.
+# Phone: (510) 548-6800.      Web: www.calthorpe.com
+# 
+
 #
-# Contact: Joe DiStefano (joed@calthorpe.com) = models.DecimalField(max_digits=14, decimal_places=4, default=0)) Calthorpe Associates.
-# Firm contact: 2095 Rose Street Suite 201 = models.DecimalField(max_digits=14, decimal_places=4, default=0)) Berkeley CA 94709.
-# Phone: (510) 548-6800. Web: www.calthorpe.com
+# 
+
+#
+# 
+
+# coding=utf-8
+#
 from footprint.managers.geo_inheritance_manager import GeoInheritanceManager
 from footprint.models.geospatial.feature import Feature
 from footprint.models.built_form.built_form import BuiltForm

@@ -1,3 +1,24 @@
+/* 
+* UrbanFootprint-California, Scenario Planning Model
+* 
+* Copyright (C) 2012-2013 Calthorpe Associates
+* 
+* This program is free software: you can redistribute it and/or modify it under the terms of the
+* GNU General Public License as published by the Free Software Foundation, version 3 of the License.
+* 
+* This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+* without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+* See the GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License along with this program.
+* If not, see <http://www.gnu.org/licenses/>.
+* 
+* Contact: Calthorpe Associates (urbanfootprint@calthorpe.com)
+* Firm contact: 2095 Rose Street Suite 201, Berkeley CA 94709.
+* Phone: (510) 548-6800.      Web: www.calthorpe.com
+* 
+ */
+
 /* mousetrap v1.3 craig.is/killing/mice */
 (function(){function s(a,c,b){a.addEventListener?a.addEventListener(c,b,!1):a.attachEvent("on"+c,b)}function y(a){return"keypress"==a.type?String.fromCharCode(a.which):h[a.which]?h[a.which]:z[a.which]?z[a.which]:String.fromCharCode(a.which).toLowerCase()}function t(a,c){a=a||{};var b=!1,d;for(d in m)a[d]&&m[d]>c?b=!0:m[d]=0;b||(p=!1)}function A(a,c,b,d,g){var f,e,h=[],j=b.type;if(!l[a])return[];"keyup"==j&&u(a)&&(c=[a]);for(f=0;f<l[a].length;++f)if(e=l[a][f],!(e.seq&&m[e.seq]!=e.level)&&j==e.action&&
     ("keypress"==j&&!b.metaKey&&!b.ctrlKey||c.sort().join(",")===e.modifiers.sort().join(",")))d&&e.combo==g&&l[a].splice(f,1),h.push(e);return h}function v(a,c,b){if(!k.stopCallback(c,c.target||c.srcElement,b)&&!1===a(c,b))c.preventDefault&&c.preventDefault(),c.stopPropagation&&c.stopPropagation(),c.returnValue=!1,c.cancelBubble=!0}function w(a){"number"!==typeof a.which&&(a.which=a.keyCode);var c=y(a);if(c)if("keyup"==a.type&&x==c)x=!1;else{var b=[];a.shiftKey&&b.push("shift");a.altKey&&b.push("alt");

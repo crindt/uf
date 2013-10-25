@@ -1,3 +1,24 @@
+/* 
+* UrbanFootprint-California, Scenario Planning Model
+* 
+* Copyright (C) 2012-2013 Calthorpe Associates
+* 
+* This program is free software: you can redistribute it and/or modify it under the terms of the
+* GNU General Public License as published by the Free Software Foundation, version 3 of the License.
+* 
+* This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+* without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+* See the GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License along with this program.
+* If not, see <http://www.gnu.org/licenses/>.
+* 
+* Contact: Calthorpe Associates (urbanfootprint@calthorpe.com)
+* Firm contact: 2095 Rose Street Suite 201, Berkeley CA 94709.
+* Phone: (510) 548-6800.      Web: www.calthorpe.com
+* 
+ */
+
 /* Reset */
 .o2k7Skin table, .o2k7Skin tbody, .o2k7Skin a, .o2k7Skin img, .o2k7Skin tr, .o2k7Skin div, .o2k7Skin td, .o2k7Skin iframe, .o2k7Skin span, .o2k7Skin *, .o2k7Skin .mceText {border:0; margin:0; padding:0; background:transparent; white-space:nowrap; text-decoration:none; font-weight:normal; cursor:default; color:#000; vertical-align:baseline; width:auto; border-collapse:separate; text-align:left}
 .o2k7Skin a:hover, .o2k7Skin a:link, .o2k7Skin a:visited, .o2k7Skin a:active {text-decoration:none; font-weight:normal; cursor:default; color:#000}

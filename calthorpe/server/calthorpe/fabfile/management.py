@@ -1,7 +1,39 @@
+# UrbanFootprint-California, Scenario Planning Model
+# 
+# Copyright (C) 2012-2013 Calthorpe Associates
+# 
+# This program is free software: you can redistribute it and/or modify it under the terms of the
+# GNU General Public License as published by the Free Software Foundation, version 3 of the License.
+# 
+# This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+# without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License along with this program.
+# If not, see <http://www.gnu.org/licenses/>.
+# 
+# Contact: Calthorpe Associates (urbanfootprint@calthorpe.com)
+# Firm contact: 2095 Rose Street Suite 201, Berkeley CA 94709.
+# Phone: (510) 548-6800.      Web: www.calthorpe.com
+# 
+
+#
+# 
+
+#
+# 
+
+#
+# 
+
+import fileinput
+import glob
 import os
+import re
 import sys
 import shutil
 from cuisine_postgresql import postgresql_role_ensure, postgresql_database_ensure, postgresql_database_check, run_as_postgres
+import datetime
 from fabric.context_managers import cd, settings
 from fabric.contrib.console import confirm
 from fabric.decorators import task
@@ -147,8 +179,8 @@ def recreate_django():
         manage_py('collectstatic --noinput')
         manage_py('footprint_init')
 
-    if os.path.exists('/tmp/stache'):
-        shutil.rmtree('/tmp/stache')
+    clear_tilestache_cache()
+
 
 
 @task
@@ -178,13 +210,22 @@ def recreate_dev():
         manage_py('collectstatic --noinput')
         manage_py('footprint_init')
 
+    clear_tilestache_cache()
+
+@task
+def clear_tilestache_cache():
     if os.path.exists('/tmp/stache'):
         shutil.rmtree('/tmp/stache')
 
+    sudo('mkdir /tmp/stache')
+    sudo('chown -R calthorpe:www-data /tmp/stache')
 
 @task
 def build_sproutcore(upgrade_env=True):
     with cd(PROJ_ROOT):
+
+        update_sproutcore_build_number()
+
         # build sproutcore
         with cd('./footprint/sproutcore'):
             sudo('rm -rf builds')
@@ -257,3 +298,94 @@ def deploy(upgrade_env=True):
 @task
 def basic_deploy():
     deploy(upgrade_env=False)
+
+
+
+
+@task
+def update_license():
+    def pre_append(line, file_name):
+        fobj = fileinput.FileInput(file_name, inplace=1)
+        first_line = fobj.readline()
+        sys.stdout.write("%s\n%s" % (line, first_line))
+        for line in fobj:
+            sys.stdout.write("%s" % line)
+        fobj.close()
+
+    boilerplate_file = open('/srv/calthorpe/urbanfootprint/calthorpe/server/calthorpe/LICENSE', 'r')
+    boilerplate = boilerplate_file.read()
+    boilerplate_file.close()
+
+    def sub_py(boilerplate):
+        text = re.sub(r'^', '# ', boilerplate, 0, re.M)
+        return re.sub(r'$', '\n', text, 1)
+    def sub_js(boilerplate):
+        text = re.sub(r'^', '* ', boilerplate, 0, re.M)
+        text = re.sub(r'^', '/* \n', text, 1)
+        return re.sub(r'$', '\n */\n', text, 1)
+    def sub_html(boilerplate):
+        text = re.sub(r'^', '<!-- \n', boilerplate, 1)
+        return re.sub(r'$', '\n -->\n', text, 1)
+
+    format_dict = {
+        'py': sub_py(boilerplate),
+        'js': sub_js(boilerplate),
+        'css': sub_js(boilerplate),
+        'html': sub_html(boilerplate)
+    }
+
+    files_to_check = collect_file_paths(django_settings.ROOT_PATH, ['py', 'js', 'css', 'html'])
+
+    # remove old license text
+    for path in files_to_check:
+        old_license = re.compile(r"\sUrbanFootprint-California.*Web:\swww\.calthorpe\.com", re.S | re.M)
+        o = open(path)
+        data = o.read()
+        o.close()
+        if 'manage.py' in path:
+            continue
+        new_file_contents = re.sub(old_license, "", data)
+        if new_file_contents:
+            file = open(path, 'w')
+            file.write(new_file_contents)
+            file.close()
+
+        ext = re.match(r'.*\.(\w+)$', path).group(1)
+
+        if format_dict.get(ext):
+            print path
+            pre_append(format_dict[ext], path)
+
+
+def collect_file_paths(root_path, extensions):
+    files_to_check = []
+    for r, d, f in os.walk(root_path):
+        for ext in extensions:
+            files_to_check.extend(glob.glob(os.path.join(r, "*.{0}".format(ext))))
+    return files_to_check
+
+@task
+def update_sproutcore_build_number():
+
+    build_number_format = "{year}.{month}.{day}".format
+
+    today = datetime.date.today()
+
+    build_number = build_number_format(year=today.year, month=today.month, day=today.day)
+
+    sproutcore_directory = os.path.join(django_settings.ROOT_PATH, 'footprint/sproutcore')
+
+    files_to_inspect = collect_file_paths(sproutcore_directory, ['js'])
+    print files_to_inspect
+
+    old_revision_line = re.compile(r"value:\s'UrbanFootprint\srev\.\s[0-9][0-9][0-9][0-9]\.[0-1][0-9]\.[0-3][0-9]\s")
+
+    for path in files_to_inspect:
+        o = open(path)
+        data = o.read()
+        o.close()
+
+        new_file_contents = re.sub(old_revision_line, "value: \'UrbanFootprint rev. {0} ".format(build_number), data)
+        if new_file_contents:
+            file = open(path, 'w')
+            file.write(new_file_contents)
