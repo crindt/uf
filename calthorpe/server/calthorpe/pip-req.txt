@@ -21,7 +21,7 @@ ModestMaps==1.4.1
 TileStache==1.46.9
 python-memcached==1.48
 Shapely==1.2.16
-django-reversion
+django-reversion==1.7
 django-reversion-compare
 django-draft==0.2.2
 django-picklefield==0.2.1
