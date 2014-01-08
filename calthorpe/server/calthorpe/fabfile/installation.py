@@ -167,8 +167,8 @@ def setup_urbanfootprint(upgrade_env=True):
     cuisine.group_user_ensure("sudo", env.deploy_user)
 
     # setup deployment user git settings #TODO: make more sense of this... probably shouldn't be this for all setups
-    sudo('su {0} -c "git config --global user.email \"deploy@calthorpe.com\""'.format(env.deploy_user))
-    sudo('su {0} -c "git config --global user.name \"Calthorpe Deployment\""'.format(env.deploy_user))
+    #sudo('su {0} -c "git config --global user.email \"crindt@activimetrics.com\""'.format(env.deploy_user))
+    #sudo('su {0} -c "git config --global user.name \"Craig Rindt\""'.format(env.deploy_user))
 
     # create folders for calthorpe deployment
     sudo('mkdir -p {git_root}'.format(git_root=GIT_ROOT))
