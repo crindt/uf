@@ -223,7 +223,6 @@ THIRD_PARTY_APPS = (
     'gunicorn',
     'datatools',
     'sendfile',
-    'django-wysiwyg',
 )
 
 PROJECT_APPS = (
