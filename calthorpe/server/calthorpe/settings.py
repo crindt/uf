@@ -81,16 +81,16 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'gis_django',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'USER': 'urban',
+        'PASSWORD': 'urban',
         'HOST': 'localhost',
         'PORT': '5432',
     },
     'import': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'gis_django',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'USER': 'urban',
+        'PASSWORD': 'urban',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -353,7 +353,7 @@ PATH_CONFIGURATIONS = {
         PYTHON_INTERPRETER='/srv/calthorpe_env/bin/python',
         SERVER_ROOT='/srv/calthorpe/urbanfootprint/calthorpe/server',
         PROJ_ROOT='/srv/calthorpe/urbanfootprint/calthorpe/server/calthorpe/',
-        WEBSOCKETS_ROOT='/srv/calthorpe/urbanfootprint/calthorpe/server/calthorpe/calthorpe_websockets',
+        WEBSOCKETS_ROOT='/srv/calthorpe/urbanfootprint/calthorpe/server/calthorpe_websockets',
     ),
     'jenkins': dict(
         ROOT='/var/lib/jenkins/jobs/FootprintTests/workspace',

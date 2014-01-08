@@ -268,6 +268,8 @@ def deploy(upgrade_env=True):
         #sudo('su {0} -c "git submodule update"'.format(env.deploy_user))
 
         if (upgrade_env == True):
+            # the following patch to the virtual env per http://stackoverflow.com/a/10538412
+            virtualenv('curl https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py | python')
             virtualenv('pip install -U -r ' + PROJ_ROOT + '/pip-req.txt')
         else:
             virtualenv('pip install -r ' + PROJ_ROOT + '/pip-req.txt')

@@ -25,7 +25,8 @@
 
 #
 from celery.task import task
-from footprint.engines.models.core import run_core
+# crindt: not available!
+#from footprint.engines.models.core import run_core
 from footprint.managers.geo_inheritance_manager import GeoInheritanceManager
 
 from footprint.models.analysis_module.analysis_module import AnalysisModule

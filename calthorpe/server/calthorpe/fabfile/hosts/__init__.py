@@ -32,8 +32,8 @@ def localhost(skip_ssh=False):
     if not skip_ssh:
         env.hosts = ['127.0.0.1']
 
-    env.user = env.deploy_user = 'calthorpe'
-    env.deploy_user = 'calthorpe'
+    env.user = env.deploy_user = 'crindt'
+    env.deploy_user = 'crindt'
     env.virtualenv_directory = '/srv/calthorpe_env'
     env.password = 'Calthorpe123'
     env.DATA_DUMP_PATH = CALTHORPE_DATA_DUMP_LOCATION

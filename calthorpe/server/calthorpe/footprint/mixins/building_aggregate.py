@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # UrbanFootprint-California, Scenario Planning Model
 # 
 # Copyright (C) 2012-2013 Calthorpe Associates

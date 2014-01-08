@@ -191,10 +191,10 @@ def setup_urbanfootprint(upgrade_env=True):
     install_mapnik()
     install_osgeo()
     # clone repo if needed
-    if not cuisine.dir_exists(GIT_ROOT):
-        with cd(GIT_ROOT):
-            sudo('su {0} -c "git clone git@bitbucket.org:calthorpe/urbanfootprint.git"'.format(env.deploy_user))
-            sudo('chown -R {user}.www-data {BASE_PATH}/..'.format(user=env.deploy_user, BASE_PATH=BASE_PATH))
+#    if not cuisine.dir_exists(GIT_ROOT):
+    with cd(GIT_ROOT):
+        sudo('su {0} -c "git clone https://github.com/Calthorpe-Associates/UrbanFootprint urbanfootprint"'.format(env.deploy_user))
+        sudo('chown -R {user}.www-data {BASE_PATH}/..'.format(user=env.deploy_user, BASE_PATH=BASE_PATH))
 
     setup_databases()
 
@@ -481,9 +481,9 @@ def install_sproutcore():
 
         run('source /usr/local/rvm/scripts/rvm')
 
-        sudo("rvm install ruby-1.9.2")
-        sudo("rvm use 1.9.2")
-        sudo("rvm --default use 1.9.2")
+        sudo("rvm install ruby-1.9.3")
+        sudo("rvm use 1.9.3")
+        sudo("rvm --default use 1.9.3")
         sudo("gem install sproutcore")
 
         cuisine.group_user_ensure('rvm', env.user)

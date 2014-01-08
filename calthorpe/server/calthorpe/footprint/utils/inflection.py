@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # UrbanFootprint-California, Scenario Planning Model
 # 
 # Copyright (C) 2012-2013 Calthorpe Associates
@@ -16,9 +17,6 @@
 # Firm contact: 2095 Rose Street Suite 201, Berkeley CA 94709.
 # Phone: (510) 548-6800.      Web: www.calthorpe.com
 # 
-
-
-# encoding: utf-8
 
 """
     inflection
