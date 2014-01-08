@@ -144,9 +144,9 @@ def recreate_django():
     )
     run_as_postgres(cmd)
 
-    postgresql_role_ensure('calthorpe', 'Calthorpe123', superuser=True, createdb=True, createrole=True,
+    postgresql_role_ensure(env.user, env.password, superuser=True, createdb=True, createrole=True,
                            inherit=True, login=True)
-    postgresql_database_ensure('urbanfootprint', owner='calthorpe', template='template_postgis')
+    postgresql_database_ensure('urbanfootprint', owner=env.user, template='template_postgis')
 
     with cd(PROJ_ROOT):
         manage_py('syncdb --noinput')
